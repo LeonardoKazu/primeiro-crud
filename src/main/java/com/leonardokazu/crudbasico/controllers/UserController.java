@@ -29,4 +29,19 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(userService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@RequestBody UserDTO userDTO, @PathVariable Long id){
+        return ResponseEntity.ok().body(userService.update(userDTO, id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

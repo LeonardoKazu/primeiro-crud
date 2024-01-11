@@ -31,4 +31,20 @@ public class UserService {
         }
         return list;
     }
+    public User findById(Long id){
+        return userRepository.findById(id).get();
+    }
+    public User update(UserDTO userDTO, Long id){
+        User user = userRepository.findById(id).get();
+
+        user.setEmail(userDTO.email());
+        user.setPassword(userDTO.password());
+        user.setName(userDTO.name());
+        user.setPhone(userDTO.phone());
+
+        return userRepository.save(user);
+    }
+    public void delete(Long id){
+        userRepository.deleteById(id);
+    }
 }
