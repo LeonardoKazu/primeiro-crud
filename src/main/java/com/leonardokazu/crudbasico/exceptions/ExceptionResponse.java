@@ -1,19 +1,20 @@
 package com.leonardokazu.crudbasico.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
-
+import java.time.Instant;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class ExceptionResponse implements Serializable {
 
-    private Date timestamp;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    private Instant timestamp;
     private String message;
     private String details;
 }
